@@ -1,1 +1,27 @@
-﻿
+﻿import pygame
+from pygame.locals import *
+
+pygame.init()
+ScreenWidth = 1000
+ScreenHeight = 800
+Screen = pygame.display.set_mode((ScreenWidth, ScreenHeight))
+
+done = False
+white = pygame.Color(255,255,255)
+times_clicked = 0
+
+while not done:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+        elif event.type == MOUSEBUTTONDOWN:
+            if times_clicked == 0:
+                point1 = pygame.mouse.get_pos()
+            else:
+                point2 = pygame.mouse.get_pos()
+            times_clicked += 1
+            if times_clicked > 1:
+                pygame.draw.line(Screen,white,point1,point2,1)
+                times_clicked = 0
+    pygame.display.update()
+pygame.quit()
