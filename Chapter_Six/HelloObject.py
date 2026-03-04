@@ -6,8 +6,8 @@ from OpenGL.GLU import *
 from Transform import *
 
 pygame.init()
-ScreenWidth = 500
-ScreenHeight = 500
+ScreenWidth = 1000
+ScreenHeight = 1000
 Screen = pygame.display.set_mode((ScreenWidth, ScreenHeight), DOUBLEBUF | OPENGL)
 
 pygame.display.set_caption("OpenGL")
@@ -24,8 +24,11 @@ glLightfv(GL_LIGHT0, GL_DIFFUSE, (1, 1, 1, 1))
 glEnable(GL_LIGHT0)
 glMaterialfv(GL_FRONT, GL_DIFFUSE, (1, 0, 0, 1))
 cube = Object("Cube")
-cube.add_component(Transform((0,0,-1)))
+cube.add_component(Transform((0,0,0)))
 cube.add_component(Cube(GL_POLYGON, "../Models/CidnerBricks.tif"))
+
+clock = pygame.time.Clock()
+fps = 30;
 while not done:
     #the for loop is for click events such as button presses
     for event in pygame.event.get():
@@ -35,5 +38,5 @@ while not done:
     glRotatef(5, 1, 0, 1)
     cube.update()
     pygame.display.flip()
-    pygame.time.wait(100)
+    clock.tick(fps)
 pygame.quit()

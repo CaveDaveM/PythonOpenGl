@@ -29,8 +29,8 @@ class Mesh3D:
     def init_texture(self):
         self.texID = glGenTextures(1)
         textureData = pygame.image.tostring(self.texture,"RGB",1)
-        width = self.texture.get_width()
-        height = self.texture.get_height()
+        width = self.texture.get_width() / 2
+        height = self.texture.get_height() / 2
         glBindTexture(GL_TEXTURE_2D, self.texID)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
         glTexImage2D(GL_TEXTURE_2D,0,3,width,height,0,GL_RGB,GL_UNSIGNED_BYTE,textureData)

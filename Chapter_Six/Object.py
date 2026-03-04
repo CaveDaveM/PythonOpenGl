@@ -13,9 +13,11 @@ class Object:
         self.components.append(component)
 
     def update(self):
+        glPushMatrix()
         for c in self.components:
             if isinstance(c, Transform):
                 pos = c.get_position()
                 glTranslatef( pos.x, pos.y, pos.z)
             if isinstance(c, Mesh3D):
                 c.draw()
+        glPopMatrix()
